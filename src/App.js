@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Login from "./components/Layout/Login";
+import BuyCandy from "./components/Buyer/BuyCandy";
+import AddCandy from "./components/Seller/AddCandy";
 
 function App() {
+  const [isBuyerLogin, setIsBuyerLogin] = useState(false);
+  const [isSellerLogin, setIsSellerLogin] = useState(false);
+
+  const showBuyerHandler = () => {
+    setIsBuyerLogin(true);
+  };
+  const showSellerHandler = () => {
+    setIsSellerLogin(true);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {(!isBuyerLogin && !isSellerLogin) && (
+        <Login
+          onShowSeller={showSellerHandler}
+          onShowBuyer={showBuyerHandler}
+        />
+      )}
+      {isBuyerLogin && <BuyCandy/>}
+      {isSellerLogin && <AddCandy />}
+    </>
   );
 }
 
