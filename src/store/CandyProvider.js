@@ -1,5 +1,5 @@
 import React, { useReducer } from "react";
-import CandyContext from "./candy-contex";
+import CandyContext from "./candy-context";
 
 const defaultCandies={candyList:[]};
 const candyReducer=(state,action)=>{
